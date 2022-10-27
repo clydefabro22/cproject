@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CProject || Home</title>
-         <link rel="stylesheet" href="styles.css">
+        <title>CProject || Converter</title>
+        <link rel="stylesheet" href="styles.css">
     </head> 
     <body>
 		<header>
 			<nav class="navbar">
-				<a href="#" class="nav-branding">CProject</a>
+				<a href="index.html" class="nav-branding">CProject</a>
 					
 				<ul class="nav-menu">
 					<li class="nav-item">
@@ -21,13 +20,13 @@
 						<a href="conversion.html" class="nav-link">Converter</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">Tax</a>
+						<a href="tax.html" class="nav-link">Tax</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">Factorial</a>
+						<a href="factorial.html" class="nav-link">Factorial</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link">Payroll</a>
+						<a href="payroll.html" class="nav-link">Payroll</a>
 					</li>
 				</ul>
 			</nav>
@@ -41,26 +40,60 @@
 
 					<form>
 						<label for= "celsius">Celsius:</label><br>
-						<input type="text" id="celsius" placeholder="Enter value" onkeyup="fun1()">
-						<p id="celsius-result"></p><br>
+						<input type="text" id="celsius" placeholder="Enter value" name="celsius"><br>
 
 						<label for= "fahrenheit">Fahrenheit:</label><br>
-						<input type="text" id="fahrenheit" placeholder="Enter value"><br><br><br>
-							
+						<input type="text" id="fahrenheit" placeholder="Enter value" name="fahrenheit"><br>
+						
 						<label for= "feet">Feet:</label><br>
-						<input type="text" id="feet" placeholder="Enter value"><br>
+						<input type="text" id="feet" placeholder="Enter value" name="feet"><br>
 
 						<label for= "meter">Meter:</label><br>
-						<input type="text" id="meter" placeholder="Enter value"><br>
+						<input type="text" id="meter" placeholder="Enter value" name="meter"><br>
 						
 						<script>
 							const txt1 = document.getElementById('celsius');
-							const out1 = document.getElementById('celsius-result');
+							const txt2 = document.getElementById('fahrenheit');
+							const txt3 = document.getElementById('feet');
+							const txt4 = document.getElementById('meter');
 
-							function fun1() {
-								out1.innerHTML = (txt1.value * (9/5)) + 32;
+							const fun1 = (event) => {
+								const x = event.target.value;
+								const y = event.target.name;
+								if (x === ""){
+									txt1.value = "";
+									txt2.value = ""
+								}
+								else if (y === "celsius"){
+									txt2.value = (txt1.value * (9/5)) + 32;
+								}
+								else if (y === "fahrenheit"){
+									txt1.value = (txt2.value -32) * (5/9);
+								}
 							}
-							
+							txt1.addEventListener ("keyup", fun1);
+							txt1.addEventListener ("focus", fun1);
+							txt2.addEventListener ("keyup", fun1);
+							txt2.addEventListener ("focus", fun1);
+
+							const fun2 = (event) => {
+								const x = event.target.value;
+								const y = event.target.name;
+								if (x === ""){
+									txt3.value = "";
+									txt4.value = ""
+								}
+								else if (y === "feet"){
+									txt4.value = txt3.value / 3.281;
+								}
+								else if (y === "meter"){
+									txt3.value = txt4.value * 3.281;
+								}
+							}
+							txt3.addEventListener ("keyup", fun2);
+							txt3.addEventListener ("focus", fun2);
+							txt4.addEventListener ("keyup", fun2);
+							txt4.addEventListener ("focus", fun2);
 						</script>
 					</form>
 				</div>

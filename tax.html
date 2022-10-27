@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CProject || Tax</title>
+        <link rel="stylesheet" href="styles.css">
+    </head> 
+    <body>
+		<header>
+			<nav class="navbar">
+				<a href="index.html" class="nav-branding">CProject</a>
+					
+				<ul class="nav-menu">
+					<li class="nav-item">
+						<a href="index.html" class="nav-link">Home</a>
+					</li>
+					<li class="nav-item">
+						<a href="conversion.html" class="nav-link">Converter</a>
+					</li>
+					<li class="nav-item">
+						<a href="tax.html" class="nav-link">Tax</a>
+					</li>
+					<li class="nav-item">
+						<a href="factorial.html" class="nav-link">Factorial</a>
+					</li>
+					<li class="nav-item">
+						<a href="payroll.html" class="nav-link">Payroll</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="box">
+				<div class="content">
+					<h1>Income Tax Calculator</h1>
+
+                    <h2>  <br><br></h2>
+
+					<form>
+						<label for= "taxable-income">Taxable Income:</label><br>
+						<input type="text" id="taxable-income" placeholder="Enter value" name="taxable-income"><br>
+
+						<label for= "income-tax">Income Tax:</label><br>
+						<input type="text" id="income-tax" placeholder="" name="income-tax" onkeydown="return false"><br>
+	
+						<script>
+							const txt1 = document.getElementById('taxable-income');
+							const txt2 = document.getElementById('income-tax');
+							
+							const fun1 = (event) => {
+								const x = event.target.value;
+								const y = event.target.name;
+								if (x === ""){
+									txt1.value = "";
+									txt2.value = "";
+								}
+								else if (y === "taxable-income"){
+                                    if (x > 0 && x <= 250000){
+                                        txt2.value = 0;
+                                    }
+                                    else if (x > 250000 && x <= 400000) {
+                                        txt2.value = (txt1.value - 250000) * 0.2;
+                                    }
+                                    else if (x > 400000 && x <= 800000){
+                                        txt2.value = 30000 + ((txt1.value - 400000) * 0.25);
+                                    }
+                                    else if (x > 800000 && x <= 2000000){
+                                        txt2.value = 130000 + ((txt1.value - 800000) * 0.3);
+                                    }
+                                    else if (x > 2000000 && x <= 8000000){
+                                        txt2.value = 490000 + ((txt1.value - 2000000) * 0.32);
+                                    }
+                                    else if (x > 8000000){
+                                        txt2.value = 2410000 + ((txt1.value - 8000000) * 0.35);
+                                    }
+                                    else {
+									    txt2.value = "";
+                                    }
+								}
+							}
+							txt1.addEventListener ("keyup", fun1);
+							txt1.addEventListener ("focus", fun1);
+						</script>
+					</form>
+				</div>
+			</div>
+			<div class="background"></div>
+		</div>
+    </body>
+</html>

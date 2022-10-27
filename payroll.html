@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CProject || Tax</title>
+        <link rel="stylesheet" href="styles.css">
+    </head> 
+    <body onload="initEmp()">
+        <header>
+			<nav class="navbar">
+				<a href="index.html" class="nav-branding">CProject</a>
+					
+				<ul class="nav-menu">
+					<li class="nav-item">
+						<a href="index.html" class="nav-link">Home</a>
+					</li>
+					<li class="nav-item">
+						<a href="conversion.html" class="nav-link">Converter</a>
+					</li>
+					<li class="nav-item">
+						<a href="tax.html" class="nav-link">Tax</a>
+					</li>
+					<li class="nav-item">
+						<a href="factorial.html" class="nav-link">Factorial</a>
+					</li>
+					<li class="nav-item">
+						<a href="payroll.html" class="nav-link">Payroll</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+        <div class="container">
+            <div class="box">
+                <div class="content">
+                    <h1>Payroll<br><br></h1>
+
+                    <label for="itemdesc">Employee Name</label>
+                    <input type="text"  placeholder="Enter name" name="name" id="name"> <br>
+                    <label for="qty">Days Work</label>
+                    <input type="number" placeholder="Enter days" name="days-work" id="days-work"> <br>
+                    <label>Daily Rate</label>
+                    <input type="number" placeholder="Enter wage" name="daily-rate" id="daily-rate"> <br>
+                    <label for="deduction-amount">Deduction Amount</label>
+                    <input type="number" placeholder="Enter deduction" name="deduction-amount" id="deduction-amount"> <br>
+                    <button onclick="addEmployee()">Add Employee</button>
+                    <br>
+                    <label for="numberEmp">Employee Count</label>
+                    <input type="number" name="numberEmp" id="numberEmp" readonly> <br>
+                    <label for="N">Remove Employee</label>
+                    <input type="number" name="no" id="no"> <br>
+                    <button onclick="removeEmployee()">Remove Employee</button>
+                    <button onclick="removeAll()">Remove All</button>
+                    <div class="table">
+                        <p id="list"></p>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <script>
+            const employeeName = document.getElementById("name")
+            const daysWork = document.getElementById("days-work")
+            const dailyRate = document.getElementById("daily-rate")
+            const deductionAmount = document.getElementById("deduction-amount")
+            const employeeCount = document.getElementById("numberEmp")
+            const RemoveEmp = document.getElementById("no")
+            var cart = []
+
+            function initEmp(){
+            cart=[]
+            employeeCount.value = cart.length
+            document.getElementById("list").innerHTML= ""
+            }
+
+            function addEmployee(){
+
+            var employee = {
+                name: "",
+                days: 1,
+                rate: 1,
+                deduction: 1,
+                gross: 1,
+                net: 1
+            }
+            employee.name = employeeName.value
+            employee.days = daysWork.value
+            employee.rate = dailyRate.value
+            employee.deduction = deductionAmount.value
+            employee.gross = employee.days * employee.rate
+            employee.net = employee.gross - employee.deduction
+
+            console.log(employee)
+            cart.push(employee)
+            employeeCount.value = cart.length
+            showCart();
+            }
+
+            function removeEmployee(){
+            var id = RemoveEmp.value
+            var toDelete;
+
+            toDelete = confirm("Delete item no. "+id+"?")
+            if(toDelete){
+                cart.splice(id-1,1)
+                employeeCount.value = cart.length
+                showCart()
+            }
+            }
+            function removeAll(){
+            var toDelete;
+
+            toDelete = confirm("Are you sure you want to remove all Employees?")
+            if(toDelete){
+                initEmp()
+            }
+            }
+            function showCart(){
+            var theader = "<thead>"
+                +"<tr>"
+                +'<th>No.</th>'
+                +'<th>Employee Name</th>'
+                +'<th>Days Worked</th>'
+                +'<th>Daily Rate</th>'
+                +'<th>Gross Pay</th>'
+                +'<th >Deduction Amount</th>'
+                +'<th>Net Pay</th>'
+                +"</tr>"
+                +"</thead>"
+                
+                var tbody = ''
+                for(let i = 0;i < cart.length; i++){
+                tbody += "<tr>"
+                    + '<td>'+(i+1)+'</td>'
+                    + '<td>'+cart[i].name+'</td>'
+                    + '<td>'+cart[i].days+'</td>'
+                    + '<td>'+cart[i].rate+'</td>'
+                    + '<td>'+cart[i].gross+'</td>'
+                    + '<td>'+cart[i].deduction+'</td>'
+                    + '<td>'+cart[i].net+'</td>'
+                    + '</tr>'
+                }
+            document.getElementById("list").innerHTML="<table>"+theader+tbody+"</table>"
+            }
+        </script>
+    </body>
+</html>

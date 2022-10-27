@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CProject || Home</title>
+        <link rel="stylesheet" href="styles.css">
+    </head> 
+    <body>
+		<header>
+			<nav class="navbar">
+				<a href="index.html" class="nav-branding">CProject</a>
+					
+				<ul class="nav-menu">
+					<li class="nav-item">
+						<a href="index.html" class="nav-link">Home</a>
+					</li>
+					<li class="nav-item">
+						<a href="conversion.html" class="nav-link">Converter</a>
+					</li>
+					<li class="nav-item">
+						<a href="tax.html" class="nav-link">Tax</a>
+					</li>
+					<li class="nav-item">
+						<a href="factorial.html" class="nav-link">Factorial</a>
+					</li>
+					<li class="nav-item">
+						<a href="payroll.html" class="nav-link">Payroll</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="box">
+				<div class="content">
+					<h1>Factorial, Sum, Average</h1>
+
+                    <h2>Factorial (While Loop), Sum (Do While Loop) and Average (For Loop) of First N Natural Numbers<br><br></h2>
+
+					<form>
+						<label for= "integer">Input:</label><br>
+						<input type="text" id="integer" placeholder="Enter integer" name="integer"><br>
+
+						<label for= "factorial">Factorial:</label><br>
+						<input type="text" id="factorial" placeholder="" name="factorial" onkeydown="return false"><br>
+                        
+                        <label for= "sum">Sum:</label><br>
+						<input type="text" id="sum" placeholder="" name="sum" onkeydown="return false"><br>
+
+                        <label for= "average">Average:</label><br>
+						<input type="text" id="average" placeholder="" name="average" onkeydown="return false"><br>
+						<script>
+							const txt1 = document.getElementById('integer');
+							const txt2 = document.getElementById('factorial');
+                            const txt3 = document.getElementById('sum');
+                            const txt4 = document.getElementById('average');
+							
+							const fun1 = (event) => {
+								const x = event.target.value;
+								const y = event.target.name;
+								if (x === ""){
+									txt1.value = "";
+									txt2.value = "";
+                                    txt3.value = "";
+                                    txt4.value = "";
+								}
+								else if (y === "integer") {
+                                    let z = 1;
+									txt2.value = txt1.value;
+									txt3.value = txt1.value;
+									txt4.value = txt1.value;
+                                    while (z < txt1.value){
+                                        txt2.value = txt2.value * z;
+										z++;
+                                    }
+									
+									z = 1;
+									do {
+										txt3.value = parseInt(txt3.value) + z;
+										z++;
+									} while (z < txt1.value)
+
+									for (let z = 1; z < txt1.value; z++){
+										txt4.value = parseInt(txt4.value) + z;
+									}
+									txt4.value = txt4.value / txt1.value;
+                                }
+							}
+							txt1.addEventListener ("keyup", fun1);
+							txt1.addEventListener ("focus", fun1);
+						</script>
+					</form>
+				</div>
+			</div>
+			<div class="background"></div>
+		</div>
+    </body>
+</html>

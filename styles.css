@@ -67,7 +67,6 @@ a{
 	min-width: 500px;
 	max-width: 1000px;
   	margin: auto;
- 	border: 3px solid #73AD21;
   	/*width: 100vh;*/
 	margin: auto;
 	background-color: whitesmoke;
@@ -77,10 +76,9 @@ a{
 
 .content{
 	text-align: center;
-	padding-top: 30%;
 	position: relative;
 	font-family: Roboto-Black;
-	padding: 20%;
+	padding-top: 100px;
 	font-size: 13px;
 
 }
@@ -90,4 +88,35 @@ input[type=text] {
 	padding: 10px 18px;
 	margin: 8px 8px;
 	box-sizing: border-box;
+	align-items: center;
+}
+
+input[type=number] {
+	width: 30%;
+	padding: 10px 18px;
+	margin: 8px 8px;
+	box-sizing: border-box;
+}
+
+.table {
+	min-width: 300px;
+	max-width: 750px;
+  	margin: auto;
+  	/*width: 100vh;*/
+	margin: auto;
+	background-color: whitesmoke;
+	height: 100vh;
+	display: block;
+	padding-top: 50px;
+	text-align: center;
+	font-size: 30px;
+}
+
+.table thead{
+	font-family: Roboto-Black;
+
+}
+
+.table tbody{
+	font-family: Helvetica;
 }
